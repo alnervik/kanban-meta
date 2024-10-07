@@ -1,6 +1,6 @@
 # kanban-meta
 
-Grupparbete
+Grupp 3<br>
 Kalle Alnervik, Emina Burek, Tintin Vestin Larsson, Vilhelm Fontell
 
 Kravspecifikation Kanban Meta
