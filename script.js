@@ -12,11 +12,17 @@ function createLandingPage() {
     const loginDiv = document.createElement('div');
     loginDiv.classList.add("navbar-login");
     loginDiv.textContent = 'Logga in';
-    
+
     // Lägger till ovanstående element först i header och sedan i root
     header.appendChild(logoDiv);
     header.appendChild(loginDiv);
     root.appendChild(header);
+
+    const div = document.createElement('div');
+    div.classList.add("landing-page");
+    div.textContent = 'Välkommen till vår Kanbantastiska-bräda!';
+    root.appendChild(div);
+
 }
 
 function createLoginForm() {
