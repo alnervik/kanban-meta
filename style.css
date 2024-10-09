@@ -1,0 +1,30 @@
+/* Gör så att alla element har en box-modell
+för att kunna använda padding och margin utan att det påverkar storleken på elementet */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar, .navbar-logo, .navbar-login {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.navbar-logo, .navbar-login {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: x-large;
+    font-weight: 450;
+}
