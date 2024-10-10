@@ -1,3 +1,5 @@
+import { createCard } from "./modules/createCardScript.mjs";
+
 const root = document.getElementById("root");
 
 // Skapar en landing page med en navbar och en login-form
