@@ -33,6 +33,7 @@ export function createLoginForm() {
 
     // Skapar en submit-knapp
     const submitBtn = document.createElement('button');
+    submitBtn.id = 'submitBtn';
     submitBtn.type = 'submit';
     submitBtn.textContent = 'Logga in';
 
