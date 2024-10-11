@@ -1,3 +1,5 @@
+import { verifyLogin } from "./verifyLogin.mjs";
+
 // Skapar en popup med en login-form
 export function createLoginForm() {
     const popup = document.createElement('div');
@@ -21,18 +23,23 @@ export function createLoginForm() {
 
     // Skapar input för användarnamn
     const usernameInput = document.createElement('input');
+    usernameInput.id = 'username';
     usernameInput.type = 'text';
     usernameInput.placeholder = 'Användarnamn';
 
-    // Skapar input för lösenord
+    // Skapar input för lösenord, använder type password för att dölja lösenordet
     const passwordInput = document.createElement('input');
+    passwordInput.id = 'password';
     passwordInput.type = 'password';
     passwordInput.placeholder = 'Lösenord';
 
     // Skapar en submit-knapp
+    // Vid klick kallas verifyLogin funktionen
     const submitBtn = document.createElement('button');
-    submitBtn.type = 'submit';
+    submitBtn.id = 'submitBtn';
+    submitBtn.type = 'button';
     submitBtn.textContent = 'Logga in';
+    submitBtn.addEventListener('click', (event) => { verifyLogin() });
 
     form.appendChild(usernameInput);
     form.appendChild(passwordInput);
