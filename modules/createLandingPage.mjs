@@ -28,6 +28,7 @@ export function createLandingPage() {
 
     const div = document.createElement('div');
     div.classList.add("landing-page");
+    div.id = 'mainContent';
     div.textContent = 'Välkommen till vår Kanbantastiska-bräda!';
     root.appendChild(div);
 

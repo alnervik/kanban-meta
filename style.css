@@ -6,8 +6,13 @@ för att kunna använda padding och margin utan att det påverkar storleken på 
     box-sizing: border-box;
 }
 
+html, body {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+}
+
 body {
-    margin: 0;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -32,9 +37,18 @@ body {
 .landing-page {
     display: flex;
     justify-content: center;
-    height: 100vh;
-    padding-top: 100px;
+    flex-grow: 1;
+    margin-top: 5vh;
+    margin-bottom: 5px;
     font-size: 3.25rem;
+}
+
+#root {
+   height: 100%;
+   width: 100%;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
 }
 
 .popup {
@@ -80,4 +94,23 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#kanbanContainer {
+   display: flex;
+   width: 99vw;
+   flex-grow: 1;
+   justify-content: space-evenly;
+   gap: 10px;
+   height: 100%;
+   margin: 0 5px 0 5px;
+}
+
+.kanbanColumn {
+   flex-grow: 1;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border: 2px solid lightgrey;
+   border-radius: 25px;
 }
