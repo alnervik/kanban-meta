@@ -21,11 +21,13 @@ export function createLoginForm() {
 
     // Skapar input för användarnamn
     const usernameInput = document.createElement('input');
+    usernameInput.id = 'username';
     usernameInput.type = 'text';
     usernameInput.placeholder = 'Användarnamn';
 
-    // Skapar input för lösenord
+    // Skapar input för lösenord, använder type password för att dölja lösenordet
     const passwordInput = document.createElement('input');
+    passwordInput.id = 'password';
     passwordInput.type = 'password';
     passwordInput.placeholder = 'Lösenord';
 
