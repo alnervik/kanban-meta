@@ -1,53 +1,37 @@
 import { verifyLogin } from "./verifyLogin.mjs";
+import { createNewElement } from "./createNewElement.mjs";
 
 // Skapar en popup med en login-form
 export function createLoginForm() {
-    const popup = document.createElement('div');
-    popup.classList.add('popup');
+    const popup = createNewElement('div', null, null, 'popup', null);
 
     // Skapar container för hela popupen
-    const popupContent = document.createElement('div');
-    popupContent.classList.add('popup-content');
+    const popupContent = createNewElement('div', null, null, 'popup-content', popup);
 
     // Skapar en knapp för att stänga popupen, vid klick stängs den
-    const closeBtn = document.createElement('span');
-    closeBtn.classList.add('close-btn');
-    closeBtn.textContent = 'X';
+    const closeBtn = createNewElement('span', 'X', null, 'close-btn', popupContent);
     closeBtn.addEventListener('click', () => {
         popup.style.display = 'none';
     });
 
     // Skapar container för login-formen
-    const form = document.createElement('form');
-    form.classList.add('login-form');
+    const form = createNewElement('form', null, null, 'login-form', popupContent);
 
     // Skapar input för användarnamn
-    const usernameInput = document.createElement('input');
-    usernameInput.id = 'username';
+    const usernameInput = createNewElement('input', null, 'username', null, form);
     usernameInput.type = 'text';
     usernameInput.placeholder = 'Användarnamn';
 
     // Skapar input för lösenord, använder type password för att dölja lösenordet
-    const passwordInput = document.createElement('input');
-    passwordInput.id = 'password';
+    const passwordInput = createNewElement('input', null, 'password', null, form);
     passwordInput.type = 'password';
     passwordInput.placeholder = 'Lösenord';
 
     // Skapar en submit-knapp
     // Vid klick kallas verifyLogin funktionen
-    const submitBtn = document.createElement('button');
-    submitBtn.id = 'submitBtn';
+    const submitBtn = createNewElement('button', 'Logga in', 'submitBtn', null, form);
     submitBtn.type = 'button';
-    submitBtn.textContent = 'Logga in';
     submitBtn.addEventListener('click', (event) => { verifyLogin() });
-
-    form.appendChild(usernameInput);
-    form.appendChild(passwordInput);
-    form.appendChild(submitBtn);
-
-    popupContent.appendChild(closeBtn);
-    popupContent.appendChild(form);
-    popup.appendChild(popupContent);
 
     // Stänger popupen när man klickar utanför
     popup.addEventListener('click', (event) => {
