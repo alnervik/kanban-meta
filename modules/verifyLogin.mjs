@@ -8,10 +8,12 @@ export function verifyLogin() {
     const submittedUsername = document.getElementById('username').value;
     const submittedPassword = document.getElementById('password').value;
     
-    if (submittedUsername == username && submittedPassword == password) {
-        console.log('Inloggad');
-    } else {
-        console.log('Fel användarnamn eller lösenord');
-    }
-
+    //Hämtar data från users.json
+    fetch('./users.json')
+    .then(res => res.json())
+    .then(users => {
+        //Använder .find för att hitta användaren som matchar inmatade värden
+        const matchingUser = users.find(user =>
+            user.username == submittedUsername && user.password == submittedPassword);
+    })
 }
