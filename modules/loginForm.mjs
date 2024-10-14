@@ -27,11 +27,16 @@ export function createLoginForm() {
     passwordInput.type = 'password';
     passwordInput.placeholder = 'Lösenord';
 
+    //Skapar felmeddelandet till login-popup, döljs först
+    const errorMessage = createNewElement('p', '', 'errorMessage', 'error-message', form);
+    errorMessage.style.color = 'red';
+    errorMessage.style.display = 'none';
+
     // Skapar en submit-knapp
     // Vid klick kallas verifyLogin funktionen
     const submitBtn = createNewElement('button', 'Logga in', 'submitBtn', null, form);
     submitBtn.type = 'button';
-    submitBtn.addEventListener('click', (event) => { verifyLogin() });
+    submitBtn.addEventListener('click', verifyLogin);
 
     // Stänger popupen när man klickar utanför
     popup.addEventListener('click', (event) => {
