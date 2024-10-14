@@ -1,3 +1,5 @@
+import { navigateTo } from './navigation.mjs';
+
 //Funktion för att verifiera inloggningen
 export function verifyLogin() {
     //Hämtar värden från inputfältet
@@ -19,7 +21,7 @@ export function verifyLogin() {
             //(kommer fixas att du blir omdirigerad alt. felmeddelande i popup)
             if (matchingUser) {
                 localStorage.setItem('isUserLoggedIn', 'true');
-                //omdirigering till landingpage via kommande navigateTo-funktion
+                navigateTo('kanbanBoard');
             } else {
                 //Visa felmeddelande i login-popup
                 const errorMessage = document.getElementById('errorMessage');
