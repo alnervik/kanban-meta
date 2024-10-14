@@ -18,9 +18,13 @@ export function verifyLogin() {
             //Skriver ut i loggen om användaren finns eller inte
             //(kommer fixas att du blir omdirigerad alt. felmeddelande i popup)
             if (matchingUser) {
-                console.log('Inloggad som:', matchingUser.username);
+                localStorage.setItem('isUserLoggedIn', 'true');
+                //omdirigering till landingpage via kommande navigateTo-funktion
             } else {
-                console.log('Fel användarnamn eller lösenord');
+                //Visa felmeddelande i login-popup
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.innerHTML = 'Fel användarnamn eller lösenord';
+                errorMessage.style.display = 'block';
         }
     });
 }
