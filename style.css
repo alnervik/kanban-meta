@@ -51,6 +51,10 @@ body {
    flex-direction: column;
 }
 
+#mainContent {
+   flex-grow: 1;
+}
+
 .popup {
     display: none;
     position: fixed;
@@ -113,6 +117,8 @@ body {
    align-items: center;
    border: 2px solid lightgrey;
    border-radius: 25px;
+   overflow-y: scroll;
+   max-height: 100vh;
 }
 
 .cardElem {
@@ -120,7 +126,6 @@ body {
    flex-direction: column;
    margin-top: 2vh;
    border: 2px solid grey;
-   /* background-color: gre; */
    border-radius: 15px;
    width: 90%;
    padding: 10px 30px 10px 30px;
