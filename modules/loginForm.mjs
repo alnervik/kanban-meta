@@ -36,7 +36,14 @@ export function createLoginForm() {
     // Vid klick kallas verifyLogin funktionen
     const submitBtn = createNewElement('button', 'Logga in', 'submitBtn', null, form);
     submitBtn.type = 'button';
-    submitBtn.addEventListener('click', verifyLogin);
+    submitBtn.addEventListener('click', () => {
+        verifyLogin();
+        setTimeout(() => {
+            if (localStorage.getItem('isUserLoggedIn') === 'true') {
+                popup.style.display = 'none';
+            }
+        }, 100);
+    });
 
     // Stänger popupen när man klickar utanför
     popup.addEventListener('click', (event) => {
