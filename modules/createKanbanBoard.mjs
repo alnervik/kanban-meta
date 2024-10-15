@@ -2,8 +2,11 @@ import { createNewElement } from './createNewElement.mjs';
 import { createCard } from './createCardScript.mjs';
 
 export function createKanbanBoard() {
-   const mainContent = document.getElementById('mainContent');
-   mainContent.innerText = null;
+   //Ändrade till root då vi har en root i index.html
+   //men skapar mainContent sedan för att kunna placera den i root och framöver placera resterande element i mainContent
+   const root = document.getElementById('root');
+   root.innerHTML = '';
+   const mainContent = createNewElement('div', null, 'mainContent', null, root);
 
    // Skapar kolumnerna samt container för kolumnerna
    const kanbanContainer = createNewElement('div', null, 'kanbanContainer', null, mainContent);

@@ -1,7 +1,5 @@
-import { createCard } from "./modules/createCardScript.mjs"; // importerar funktion för att skapa nya kort
-import { createLandingPage } from "./modules/createLandingPage.mjs";
+import { checkIfLoggedIn } from "./modules/navigation.mjs";
 
 const root = document.getElementById("root");
 
-
-createLandingPage();
+checkIfLoggedIn();
