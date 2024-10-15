@@ -1,4 +1,6 @@
-export function createCard(){ // Implementerar funktion för att skapa kort
+import { saveCard } from "./cardStorage.mjs";
+
+export function createCard(columnId){ // Implementerar funktion för att skapa kort (Sätter krav på ID för localstorage)
     let cardElem = document.createElement("div"); 
     cardElem.className = "cardElem";
     let inputElem = document.createElement("textarea");
@@ -18,10 +20,14 @@ export function createCard(){ // Implementerar funktion för att skapa kort
     editBtn.style.display = "none"; // Tar bort redigeringsknapp från DOM
 
     addCard.addEventListener("click", function(){ // Skapar click-event på Add card knapp
+
         if (inputElem.value != ""){ // Om input-elementet innehåller text körs koden nedanför
             editBtn.style.display = "inline-block";
             addCard.style.display = "none";
             inputElem.setAttribute("disabled", ""); 
+
+            //Sparar kortet i localstorage med rätt ID
+            saveCard(columnId, inputElem.value);
         }
        
     })
@@ -32,6 +38,8 @@ export function createCard(){ // Implementerar funktion för att skapa kort
         addCard.style.display = "inline-block";
         addCard.innerText = "Save changes";
         editBtn.style.display = "none";
+
+        saveCard(columnId, inputElem.value);
 
     })
 
