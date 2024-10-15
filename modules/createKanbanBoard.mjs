@@ -1,5 +1,6 @@
 import { createNewElement } from './createNewElement.mjs';
 import { createCard } from './createCardScript.mjs';
+import { loadCards } from "./cardStorage.mjs";
 
 export function createKanbanBoard() {
    //Ändrade till root då vi har en root i index.html
@@ -15,10 +16,16 @@ export function createKanbanBoard() {
    const testing = createNewElement('div', 'Testing', 'testing', 'kanbanColumn', kanbanContainer);
    const done = createNewElement('div', 'Done', 'done', 'kanbanColumn', kanbanContainer);
 
+   //Laddar korten från localstorage för varje kolumn
+   loadCards(todo.id);
+   loadCards(doing.id);
+   loadCards(testing.id);
+   loadCards(done.id);
+
    // Går igenom varje kolumn och lägger till ett tomt kort
    const columnsArray = [todo, doing, testing, done];
    columnsArray.forEach(column => {
-      column.appendChild(createCard());
+      column.appendChild(createCard(column.id));
       addButtonListener(column);
    });
 
@@ -31,7 +38,7 @@ export function createKanbanBoard() {
       const lastCard = column.getElementsByClassName('addCard')[numberOfCards - 1];
       lastCard.onclick = () => {
          if (lastCard.innerText !== 'Save changes') {
-            column.appendChild(createCard());
+            column.appendChild(createCard(column.id));
             // Kör funktionen igen för att lägga till eventListener på det nyskapade kortet
             addButtonListener(column);
          }
