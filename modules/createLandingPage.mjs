@@ -1,18 +1,16 @@
 import { createLoginForm } from "./loginForm.mjs";
+import { createNewElement } from "./createNewElement.mjs";
 
 // Skapar en landing page med en navbar och en login-form
 export function createLandingPage() {
-    const header = document.createElement('header');
-    header.classList.add("navbar");
+    const root = document.getElementById('root');
+
+    const header = createNewElement('header', null, null, 'navbar', root);
     
-    const logoDiv = document.createElement('div');
-    logoDiv.classList.add("navbar-logo");
-    logoDiv.textContent = 'KANBAN 3';
+    const logoDiv = createNewElement('div', 'KANBAN 3', null, 'navbar-logo', header);
     
     //Skapar loginknappen, öppnar popupen genom att kalla på createLoginForm
-    const loginDiv = document.createElement('div');
-    loginDiv.classList.add("navbar-login");
-    loginDiv.textContent = 'Logga in';
+    const loginDiv = createNewElement('div', 'Logga in', null, 'navbar-login', header);
     loginDiv.addEventListener('click', () => {
         const loginPopup = document.querySelector('.popup') || createLoginForm();
         if (!document.body.contains(loginPopup)) {
@@ -21,15 +19,5 @@ export function createLandingPage() {
         loginPopup.style.display = 'flex';
     });
 
-    // Lägger till ovanstående element först i header och sedan i root
-    header.appendChild(logoDiv);
-    header.appendChild(loginDiv);
-    root.appendChild(header);
-
-    const div = document.createElement('div');
-    div.classList.add("landing-page");
-    div.id = 'mainContent';
-    div.textContent = 'Välkommen till vår Kanbantastiska-bräda!';
-    root.appendChild(div);
-
+    const mainContent = createNewElement('div', 'Välkommen till vår Kanbantastiska-bräda!', 'mainContent', 'landing-page', root);
 }
