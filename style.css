@@ -114,3 +114,26 @@ body {
    border: 2px solid lightgrey;
    border-radius: 25px;
 }
+
+.cardElem {
+   display: flex;
+   flex-direction: column;
+   margin-top: 2vh;
+   border: 2px solid grey;
+   /* background-color: gre; */
+   border-radius: 15px;
+   width: 90%;
+   padding: 10px 30px 10px 30px;
+   align-items: center;
+}
+
+.textarea {
+   resize: none;
+   border-radius: 5px;
+   width: 100%;
+}
+
+.addCard, .editBtn {
+   margin-top: 5px;
+   width: 30%;
+}

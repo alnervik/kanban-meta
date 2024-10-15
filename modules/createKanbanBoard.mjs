@@ -19,6 +19,8 @@ export function createKanbanBoard() {
       addButtonListener(column);
    });
 
+   const textarea = document.querySelector('textarea');
+
 
 
    // Detta körs i en egen funktion är för att column ändrar värde och måste skickas in som en parameter för att behålla sitt rätta värde
@@ -33,5 +35,12 @@ export function createKanbanBoard() {
             addButtonListener(column);
          }
       };
+
+      // Gör så att textrutans storlek anpassar sig till innehållet
+      const textarea = lastCard.parentElement.querySelector('textarea');
+      textarea.addEventListener('input', () => {
+         textarea.style.height = 'auto';
+         textarea.style.height = (textarea.scrollHeight) + 'px';
+      });
    }
 }
