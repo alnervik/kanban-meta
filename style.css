@@ -121,14 +121,14 @@ body {
    align-items: center;
    border: 2px solid lightgrey;
    border-radius: 25px;
-   overflow-y: scroll;
-   max-height: 100vh;
+   overflow-y: auto;
+   max-height: 93vh;
 }
 
 .cardElem {
    display: flex;
    flex-direction: column;
-   margin-top: 2vh;
+   margin: 1vh 0 1vh 0;
    border: 2px solid grey;
    border-radius: 15px;
    width: 90%;
