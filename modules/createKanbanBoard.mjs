@@ -2,6 +2,7 @@ import { createNewElement } from './createNewElement.mjs';
 import { createCard } from './createCardScript.mjs';
 import { loadCards } from "./cardStorage.mjs";
 import { navigateTo } from "./navigation.mjs";
+import { onDragOver, onDrop } from './dragAndDrop.mjs';
 
 export function createKanbanBoard() {
    // Ändrade till root då vi har en root i index.html
@@ -26,6 +27,13 @@ export function createKanbanBoard() {
    const doing = createNewElement('div', 'Doing', 'doing', 'kanbanColumn', kanbanContainer);
    const testing = createNewElement('div', 'Testing', 'testing', 'kanbanColumn', kanbanContainer);
    const done = createNewElement('div', 'Done', 'done', 'kanbanColumn', kanbanContainer);
+
+   //Skapar eventlistener till kolumnerna för onDragOver och onDrop funktionerna
+   [todo, doing, testing, done].forEach(column => 
+   {
+      column.addEventListener("dragover", (event) => onDragOver(event));
+      column.addEventListener("drop", (event) => onDrop(event));
+   });
 
    //Laddar korten från localstorage för varje kolumn
    loadCards(todo.id);
