@@ -1,12 +1,23 @@
 import { createNewElement } from './createNewElement.mjs';
 import { createCard } from './createCardScript.mjs';
 import { loadCards } from "./cardStorage.mjs";
+import { navigateTo } from "./navigation.mjs";
 
 export function createKanbanBoard() {
    // Ändrade till root då vi har en root i index.html
    // men skapar mainContent sedan för att kunna placera den i root och framöver placera resterande element i mainContent
    const root = document.getElementById('root');
    root.innerHTML = '';
+
+   const header = createNewElement('header', null, null, 'navbar', root);
+   const logoDiv = createNewElement('div', 'KANBAN 3', null, 'navbar-logo', header);
+   const logoutDiv = createNewElement('div', 'Logga ut', null, 'navbar-logout', header);
+
+   logoutDiv.addEventListener('click', () => {
+      localStorage.removeItem('isUserLoggedIn');
+      navigateTo('landingPage');
+   });
+
    const mainContent = createNewElement('div', null, 'mainContent', null, root);
 
    // Skapar kolumnerna samt container för kolumnerna
