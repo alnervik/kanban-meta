@@ -27,14 +27,14 @@ body {
     gap: 10px;
 }
 
-.navbar-logo, .navbar-login {
+.navbar-logo, .navbar-login, .navbar-logout {
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: x-large;
     font-weight: 450;
 }
 
-.navbar-login {
+.navbar-login, .navbar-logout {
     cursor: pointer;
 }
 
