@@ -1,8 +1,19 @@
 import { saveCard } from "./cardStorage.mjs";
+import { onDragStart } from "./dragAndDrop.mjs";
 
 export function createCard(columnId){ // Implementerar funktion för att skapa kort (Sätter krav på ID för localstorage)
     let cardElem = document.createElement("div"); 
     cardElem.className = "cardElem";
+    cardElem.setAttribute("draggable", "true");
+
+    //Skapar ID för varje kort
+    cardElem.id = "card_" + new Date().getTime();
+    //Skapar eventlistener för onDragStart funktionen
+    cardElem.addEventListener("dragstart", function(event)
+    {
+        onDragStart(event);
+    });
+
     let inputElem = document.createElement("textarea");
     inputElem.className = "textarea"
     cardElem.appendChild(inputElem);
