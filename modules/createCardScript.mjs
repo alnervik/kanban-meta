@@ -1,5 +1,5 @@
-import { deleteCard, saveCard } from "./cardStorage.mjs";
-import { onDragStart } from "./dragAndDrop.mjs";
+import { deleteCard, saveCard,updateCard } from "./cardStorage.mjs";
+import { handleDelete, onDragStart } from "./dragAndDrop.mjs";
 
 export function createCard(columnId, cardText = "", cardId = null){ // Implementerar funktion för att skapa kort (Sätter krav på ID och text för localstorage)
     let cardElem = document.createElement("div"); 
@@ -15,6 +15,7 @@ export function createCard(columnId, cardText = "", cardId = null){ // Implement
     {
         const newCardId = "card_" + new Date().getTime();
         cardElem.id = newCardId;
+        cardId = newCardId;
     };
     
     //Skapar eventlistener för onDragStart funktionen
@@ -62,21 +63,28 @@ export function createCard(columnId, cardText = "", cardId = null){ // Implement
 
     deleteBtn.addEventListener("click", function(e){
         let cardToDelete = e.target.parentNode;
-        cardToDelete.remove();
-        
-        deleteCard(columnId, cardId);
+
+        const columnId = cardToDelete.parentNode.id;
+        const cardId = cardToDelete.id;
+
+        handleDelete(columnId, cardId, cardToDelete);
     })
     
     
-    editBtn.addEventListener("click", function(){ // Skapar click-event på Edit knapp
+    editBtn.addEventListener("click", function() {
         inputElem.removeAttribute("disabled");
         addCard.style.display = "inline-block";
         addCard.innerText = "Save changes";
-        editBtn.style.display = "inline-block";
+        editBtn.style.display = "none";
 
-        saveCard(columnId, cardId, inputElem.value);
-
-    })
+        //Uppdaterar kortet när ändringar sparas
+        addCard.addEventListener("click", function() {
+            updateCard(columnId, cardId, inputElem.value);
+            inputElem.setAttribute("disabled", "");
+            addCard.style.display = "none";
+            editBtn.style.display = "inline-block";
+        });
+    });
 
     
 

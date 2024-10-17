@@ -1,5 +1,5 @@
 import { createCard } from "./createCardScript.mjs";
-import { saveCard,loadCard,loadCards,updateCard } from "./cardStorage.mjs";
+import { saveCard,loadCard,loadCards,updateCard, deleteCard } from "./cardStorage.mjs";
 
 //Skapar funktion för att starta ondrag och sätter ID
 export function onDragStart(event)
@@ -28,30 +28,11 @@ export function onDrop(event)
         const oldColumnId = draggableElement.parentElement.id;
         dropZone.appendChild(draggableElement);
 
-        //Hämtar alla kort i den nya kolumnen
-        const newCards = Array.from(dropZone.children)
-        .filter(child => child.classList.contains("cardElem"))
-        .map(card => ({
-            id: card.id,
-            text: card.querySelector(".textarea").value
-        }));
-
-        //Sparar kortet i den nya kolumnen
-        localStorage.setItem(newColumnId, JSON.stringify(newCards));
-
-        //Hämtar alla gamla kort
-        const oldCards = Array.from(document.getElementById(oldColumnId).children)
-        .filter(child => child.classList.contains("cardElem"))
-        .map(card => ({
-            id: card.id,
-            text: card.querySelector(".textarea").value
-        }));
-
-        localStorage.setItem(oldColumnId, JSON.stringify(oldCards));
-    };
+        updateStorageAfterMove(newColumnId, oldColumnId, id);
 
     event.dataTransfer.clearData();
     
+};
 };
 
 //Skapar funktion för att kunna göra en drop
@@ -59,3 +40,22 @@ export function onDragOver(event)
 {
     event.preventDefault();
 };
+
+export function updateStorageAfterMove(newColumnId, oldColumnId, cardId)
+{
+    //Uppdaterar gamla kolumnen
+    const oldCards = loadCard(oldColumnId).filter(card => card.id !== cardId);
+    localStorage.setItem(oldColumnId, JSON.stringify(oldCards));
+
+    //Uppdaterar nya kolumnen
+    const newCards = loadCard(newColumnId);
+    const cardText = document.getElementById(cardId).querySelector(".textarea").value;
+    newCards.push({id: cardId, text: cardText});
+    localStorage.setItem(newColumnId, JSON.stringify(newCards));
+};
+
+export function handleDelete(columnId, cardId, cardElement)
+{
+    deleteCard(columnId, cardId);
+    cardElement.remove();
+}
