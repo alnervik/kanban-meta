@@ -32,6 +32,13 @@ export function createCard(columnId, cardText = ""){ // Implementerar funktion f
 
     editBtn.style.display = "none"; // Tar bort redigeringsknapp från DOM
 
+    let deleteBtn = document.createElement("button"); // Skapar knapp för ta bort kort
+    deleteBtn.className = "deleteBtn";
+    deleteBtn.innerText = "Delete";
+    cardElem.appendChild(deleteBtn);
+
+  
+
     addCard.addEventListener("click", function(){ // Skapar click-event på Add card knapp
 
         if (inputElem.value != ""){ // Om input-elementet innehåller text körs koden nedanför
@@ -44,13 +51,18 @@ export function createCard(columnId, cardText = ""){ // Implementerar funktion f
         }
        
     })
+
+    deleteBtn.addEventListener("click", function(e){
+        let cardToDelete = e.target.parentNode;
+        cardToDelete.remove();
+    })
     
     
     editBtn.addEventListener("click", function(){ // Skapar click-event på Edit knapp
         inputElem.removeAttribute("disabled");
         addCard.style.display = "inline-block";
         addCard.innerText = "Save changes";
-        editBtn.style.display = "none";
+        editBtn.style.display = "inline-block";
 
         saveCard(columnId, cardId, inputElem.value);
 
