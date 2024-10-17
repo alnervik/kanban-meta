@@ -1,14 +1,22 @@
-import { saveCard,updateCard } from "./cardStorage.mjs";
+import { deleteCard, saveCard } from "./cardStorage.mjs";
 import { onDragStart } from "./dragAndDrop.mjs";
 
-export function createCard(columnId, cardText = ""){ // Implementerar funktion för att skapa kort (Sätter krav på ID och text för localstorage)
+export function createCard(columnId, cardText = "", cardId = null){ // Implementerar funktion för att skapa kort (Sätter krav på ID och text för localstorage)
     let cardElem = document.createElement("div"); 
     cardElem.className = "cardElem";
     cardElem.setAttribute("draggable", "true");
 
     //Skapar ID för varje kort
-    const cardId = "card_" + new Date().getTime();
-    cardElem.id = cardId;
+    if(cardId)
+    {
+        cardElem.id = cardId;
+    }
+    else
+    {
+        const newCardId = "card_" + new Date().getTime();
+        cardElem.id = newCardId;
+    };
+    
     //Skapar eventlistener för onDragStart funktionen
     cardElem.addEventListener("dragstart", function(event)
     {
@@ -47,7 +55,7 @@ export function createCard(columnId, cardText = ""){ // Implementerar funktion f
             inputElem.setAttribute("disabled", ""); 
 
             //Sparar kortet i localstorage med rätt ID
-            saveCard(columnId, inputElem.value);
+            saveCard(columnId, cardId, inputElem.value);
         }
        
     })
@@ -55,6 +63,8 @@ export function createCard(columnId, cardText = ""){ // Implementerar funktion f
     deleteBtn.addEventListener("click", function(e){
         let cardToDelete = e.target.parentNode;
         cardToDelete.remove();
+        
+        deleteCard(columnId, cardId);
     })
     
     
