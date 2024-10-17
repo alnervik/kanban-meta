@@ -35,12 +35,6 @@ export function createKanbanBoard() {
       column.addEventListener("drop", (event) => onDrop(event));
    });
 
-   //Laddar korten från localstorage för varje kolumn
-   loadCards(todo.id);
-   loadCards(doing.id);
-   loadCards(testing.id);
-   loadCards(done.id);
-
    // Går igenom varje kolumn och lägger till ett tomt kort
    const columnsArray = [todo, doing, testing, done];
    columnsArray.forEach(column => {
@@ -58,4 +52,10 @@ export function createKanbanBoard() {
          });
       };
    });
-}
+
+      //Laddar korten från localstorage för varje kolumn
+      loadCards(todo.id);
+      loadCards(doing.id);
+      loadCards(testing.id);
+      loadCards(done.id);
+};
