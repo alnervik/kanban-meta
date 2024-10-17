@@ -1,5 +1,6 @@
 import { createCard } from './createCardScript.mjs';
 
+
 //Skapar funktion för att spara korten i localstorage med rätt ID
 //error meddelande ifall ID inte finns
 export function saveCard(columnId, cardId, text) {
@@ -9,11 +10,25 @@ export function saveCard(columnId, cardId, text) {
     }
 
     const existingCards = JSON.parse(localStorage.getItem(columnId)) || [];
-    const newCardId = "card_" + new Date().getTime();
 
-    existingCards.push({ id: newCardId, text: text });
+    //Kontrollerar om kortet redan existerar
+    let cardExists = false;
+    existingCards.forEach(card => 
+    {
+        if(card.id == cardId)
+        {
+            card.text = text; //Uppdaterar texten
+            cardExists = true;
+        }
+    });
+
+    if(!cardExists)
+    {
+        existingCards.push({id: cardId, text: text});
+    }
+
     localStorage.setItem(columnId, JSON.stringify(existingCards));
-}
+};
 
 //Skapar funktion för att ladda korten med rätt ID
 //error meddelande ifall ID inte finns
