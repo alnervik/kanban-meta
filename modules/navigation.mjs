@@ -17,7 +17,6 @@ export function navigateTo(page) {
     }
 }
 
-//inte riktigt klar med att koppla på denna funktion
 export function checkIfLoggedIn() {
     if (localStorage.getItem('isUserLoggedIn') === 'true') {
         navigateTo('kanbanBoard');
