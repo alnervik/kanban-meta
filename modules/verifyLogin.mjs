@@ -17,8 +17,6 @@ export function verifyLogin() {
         const matchingUser = users.find(user => {
             return user.username === submittedUsername && user.password === submittedPassword;
         });
-            //Skriver ut i loggen om användaren finns eller inte
-            //(kommer fixas att du blir omdirigerad alt. felmeddelande i popup)
             if (matchingUser) {
                 localStorage.setItem('isUserLoggedIn', 'true');
                 navigateTo('kanbanBoard');
